@@ -15,7 +15,7 @@ import com.sinergise.geometry.Point;
 import com.sinergise.geometry.Polygon;
 
 /**
- * Reads the string WKT representation of a Geometry and constructs a Geometry instance
+ * Transforms the input WKT-formatted String into Geometry object instance
  *
  */
 public class WKTReader {
