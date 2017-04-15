@@ -242,7 +242,7 @@ public class WKTWriter {
 	 * @return String
 	 */
 	private String wrapInParanthesis(String str) {
-		return OPEN_PARANTHESIS + str + CLOSE_PARANTHESIS;
+		return str.equals(EMPTY) ? str : OPEN_PARANTHESIS + str + CLOSE_PARANTHESIS;
 	}
 	
 }

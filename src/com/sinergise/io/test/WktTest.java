@@ -58,16 +58,16 @@ public class WktTest {
 		String wkt3 = "LINESTRING EMPTY";
 		String wkt4 = "LINESTRING (54 23, 12 28, 30 30, 54 23)";
 		String wkt5 = "MULTIPOINT EMPTY";
-		String wkt6 = "MULTIPOINT ((26 31), (25 35), (26 36))";
+		String wkt6 = "MULTIPOINT (EMPTY, (25 35), (26 36))";
 		String wkt7 = "MULTILINESTRING EMPTY";
-		String wkt8 = "MULTILINESTRING ((54 23, 12 28, 30 30, 54 23), (55 26, 17 24, 36 33, 56 22))";
+		String wkt8 = "MULTILINESTRING (EMPTY, (55 26, 17 24, 36 33, 56 22), EMPTY)";
 		String wkt9 = "POLYGON EMPTY";
 		String wkt10 = "POLYGON ((30 10, 10 30, 40 40, 30 10))";
 		String wkt11 = "POLYGON ((30 10, 10 30, 40 40, 30 10), (54 23, 12 28, 30 30, 54 23), (55 26, 17 24, 36 33, 55 26))";
 		String wkt12 = "MULTIPOLYGON EMPTY";
-		String wkt13 = "MULTIPOLYGON (((30 10, 10 30, 40 40, 30 10)), ((32 12, 12 32, 42 42, 32 12), (54 23, 12 28, 30 30, 54 23), (55 26, 17 24, 36 33, 55 26)), ((34 15, 14 35, 44 45, 34 15), (53 25, 32 48, 30 40, 53 25), (34 43, 22 58, 30 50, 34 43)))";
+		String wkt13 = "MULTIPOLYGON (EMPTY, ((32 12, 12 32, 42 42, 32 12), (54 23, 12 28, 30 30, 54 23), (55 26, 17 24, 36 33, 55 26)), ((34 15, 14 35, 44 45, 34 15), (53 25, 32 48, 30 40, 53 25), (34 43, 22 58, 30 50, 34 43)), EMPTY)";
 		String wkt14 = "GEOMETRYCOLLECTION EMPTY";
-		String wkt15 = "GEOMETRYCOLLECTION (POINT (4 6), LINESTRING (4 6, 7 10), MULTIPOINT ((26 31), (25 35), (26 36)), MULTIPOLYGON (((30 10, 10 30, 40 40, 30 10)), ((32 12, 12 32, 42 42, 32 12), (54 23, 12 28, 30 30, 54 23), (55 26, 17 24, 36 33, 55 26)), ((34 15, 14 35, 44 45, 34 15), (53 25, 32 48, 30 40, 53 25), (34 43, 22 58, 30 50, 34 43))))";
+		String wkt15 = "GEOMETRYCOLLECTION (POINT (45 67), POINT EMPTY, LINESTRING (4 6, 7 10), MULTIPOINT (EMPTY, (25 35), (26 36)), MULTIPOLYGON (EMPTY, ((30 10, 10 30, 40 40, 30 10)), ((32 12, 12 32, 42 42, 32 12), (54 23, 12 28, 30 30, 54 23), (55 26, 17 24, 36 33, 55 26)), ((34 15, 14 35, 44 45, 34 15), (53 25, 32 48, 30 40, 53 25), (34 43, 22 58, 30 50, 34 43))))";
 		
 		Geometry g1 = reader.read(wkt1);
 		Geometry g2 = reader.read(wkt2);

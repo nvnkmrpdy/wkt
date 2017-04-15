@@ -88,7 +88,7 @@ public class WKTReader {
 	 * @return {@link Point}
 	 */
 	private MultiPoint readMultiPoint(String wktString) {
-		Pattern wktPattern = Pattern.compile("(\\([\\d]+)\\s([\\d]+\\))");
+		Pattern wktPattern = Pattern.compile("(\\([\\d]+)\\s([\\d]+\\))|(EMPTY)");
 		Matcher matcher = wktPattern.matcher(wktString);
 		
 		List<Point> points = new ArrayList<Point>();
@@ -142,7 +142,7 @@ public class WKTReader {
 	 * @return {@link MultiLineString}
 	 */
 	private MultiLineString readMultiLineString(String wktString) {
-		Pattern wktPattern = Pattern.compile("(\\([\\d\\s,]+\\))");
+		Pattern wktPattern = Pattern.compile("(\\([\\d\\s,]+\\))|(EMPTY)");
 		Matcher matcher = wktPattern.matcher(wktString);
 		
 		List<LineString> lineStrings = new ArrayList<LineString>();
@@ -196,7 +196,7 @@ public class WKTReader {
 	 * @return {@link MultiPolygon}
 	 */
 	private MultiPolygon readMultiPolygon(String wktString) {
-		Pattern wktPattern = Pattern.compile("((\\([\\d\\s,]+\\))(?:,\\s(\\([\\d\\s,]+\\)))*)");
+		Pattern wktPattern = Pattern.compile("((\\([\\d\\s,]+\\))(?:,\\s(\\([\\d\\s,]+\\)))*)|(EMPTY)");
 		Matcher matcher = wktPattern.matcher(wktString);
 		
 		List<Polygon> polygons = new ArrayList<Polygon>();
@@ -221,16 +221,23 @@ public class WKTReader {
 	 * @return {@link GeometryCollection}
 	 */
 	private GeometryCollection<Geometry> readGeometryCollection(String wktString) {
-		Pattern wktPattern = Pattern.compile("[A-Z]+\\s\\([0-9\\s,)(]+\\)");
-		Matcher matcher = wktPattern.matcher(wktString);
+		// Empty case
+		if (wktString.equals("GEOMETRYCOLLECTION EMPTY")) {
+			return new GeometryCollection<Geometry>(); 
+		}
+		
+		// Extract the collections part
+		String wktStringExtracted = wktString.replaceFirst("GEOMETRYCOLLECTION \\(", "");
+		wktStringExtracted = wktStringExtracted.substring(0, wktStringExtracted.length() - 1);
+		String collectionParts[] = wktStringExtracted.split("(,\\s)(?=[PLMG])");
 		
 		List<Geometry> geometries = new ArrayList<Geometry>();
 		// For each Geometry present, get the Geometry instance
-		while (matcher.find()) {
-			geometries.add(read(matcher.group()));
+		for (String part: collectionParts) {
+			geometries.add(read(part));
 		} 
 		
 		return new GeometryCollection<Geometry>(geometries);
 	}
-
+	
 }
