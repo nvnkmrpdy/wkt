@@ -7,7 +7,8 @@
 
 ## Summary
 
-_WKTReader_: Transforms the input WKT-formatted string into Geometry object instance.
+_WKTReader_: Transforms the input WKT-formatted string into Geometry object.
+
 _WKTWriter_: Transforms the input Geometry object into WKT-formatted string.
 
 #### Scopes for improvement:
